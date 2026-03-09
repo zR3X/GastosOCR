@@ -2,45 +2,47 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { Expense, Budget, CategoryKey } from '../types';
 import { CATEGORIES } from '../constants/categories';
 
-const EXPENSES_KEY = 'gastos_expenses';
-const BUDGETS_KEY = 'gastos_budgets';
+const EXPENSES_KEY = 'viaje_expenses';
+const BUDGETS_KEY = 'viaje_budgets';
 
 const SEED_EXPENSES: Expense[] = [
-  // March 2026
-  { id: 'e1', date: '2026-03-01', amount: 45.30, category: 'alimentacion', description: 'Compra semanal', merchant: 'Mercadona', createdAt: '2026-03-01T10:00:00Z' },
-  { id: 'e2', date: '2026-03-02', amount: 12.50, category: 'transporte', description: 'Trayecto trabajo', merchant: 'Cabify', createdAt: '2026-03-02T08:30:00Z' },
-  { id: 'e3', date: '2026-03-03', amount: 18.75, category: 'salud', description: 'Medicamentos', merchant: 'Farmacia Central', createdAt: '2026-03-03T12:00:00Z' },
-  { id: 'e4', date: '2026-03-04', amount: 15.99, category: 'entretenimiento', description: 'Suscripción mensual', merchant: 'Netflix', createdAt: '2026-03-04T09:00:00Z' },
-  { id: 'e5', date: '2026-03-05', amount: 87.50, category: 'servicios', description: 'Factura luz', merchant: 'Iberdrola', createdAt: '2026-03-05T10:00:00Z' },
-  { id: 'e6', date: '2026-03-06', amount: 65.00, category: 'ropa', description: 'Camisa y pantalón', merchant: 'Zara', createdAt: '2026-03-06T16:00:00Z' },
-  { id: 'e7', date: '2026-03-07', amount: 28.50, category: 'alimentacion', description: 'Cena restaurante', merchant: 'La Taberna', createdAt: '2026-03-07T20:00:00Z' },
-  { id: 'e8', date: '2026-03-07', amount: 55.00, category: 'transporte', description: 'Gasolina', merchant: 'Repsol', createdAt: '2026-03-07T14:00:00Z' },
-  { id: 'e9', date: '2026-03-08', amount: 120.00, category: 'educacion', description: 'Curso online', merchant: 'Udemy', createdAt: '2026-03-08T11:00:00Z' },
-  { id: 'e10', date: '2026-03-08', amount: 9.99, category: 'entretenimiento', description: 'Suscripción música', merchant: 'Spotify', createdAt: '2026-03-08T09:00:00Z' },
-  // February 2026
-  { id: 'e11', date: '2026-02-28', amount: 62.15, category: 'alimentacion', description: 'Compra mensual', merchant: 'Carrefour', createdAt: '2026-02-28T11:00:00Z' },
-  { id: 'e12', date: '2026-02-25', amount: 22.00, category: 'transporte', description: 'Bono metro', merchant: 'Metro Madrid', createdAt: '2026-02-25T08:00:00Z' },
-  { id: 'e13', date: '2026-02-20', amount: 45.00, category: 'salud', description: 'Cuota gimnasio', merchant: 'Fitness Center', createdAt: '2026-02-20T18:00:00Z' },
-  { id: 'e14', date: '2026-02-15', amount: 35.99, category: 'otros', description: 'Compra online', merchant: 'Amazon', createdAt: '2026-02-15T14:00:00Z' },
-  { id: 'e15', date: '2026-02-10', amount: 35.99, category: 'servicios', description: 'Factura móvil', merchant: 'Vodafone', createdAt: '2026-02-10T10:00:00Z' },
-  { id: 'e16', date: '2026-02-08', amount: 85.00, category: 'alimentacion', description: 'Compra semanal', merchant: 'Mercadona', createdAt: '2026-02-08T10:00:00Z' },
-  { id: 'e17', date: '2026-02-05', amount: 25.00, category: 'entretenimiento', description: 'Entradas cine x2', merchant: 'Cinesa', createdAt: '2026-02-05T19:00:00Z' },
-  { id: 'e18', date: '2026-02-01', amount: 90.00, category: 'servicios', description: 'Factura gas', merchant: 'Naturgy', createdAt: '2026-02-01T10:00:00Z' },
-  // January 2026
-  { id: 'e19', date: '2026-01-31', amount: 48.75, category: 'ropa', description: 'Zapatillas deportivas', merchant: 'Nike Store', createdAt: '2026-01-31T12:00:00Z' },
-  { id: 'e20', date: '2026-01-28', amount: 75.00, category: 'educacion', description: 'Libros de texto', merchant: 'FNAC', createdAt: '2026-01-28T16:00:00Z' },
-  { id: 'e21', date: '2026-01-15', amount: 110.00, category: 'servicios', description: 'Seguro hogar', merchant: 'Mapfre', createdAt: '2026-01-15T10:00:00Z' },
-  { id: 'e22', date: '2026-01-10', amount: 38.40, category: 'alimentacion', description: 'Supermercado', merchant: 'Lidl', createdAt: '2026-01-10T12:00:00Z' },
+  // Marzo 2026 — Viaje a México
+  { id: 'e1', date: '2026-03-01', amount: 520.00, category: 'vuelos', description: 'Vuelo MAD→MEX (ida y vuelta)', merchant: 'Iberia', destination: 'Ciudad de México', createdAt: '2026-03-01T08:00:00Z' },
+  { id: 'e2', date: '2026-03-02', amount: 85.00, category: 'alojamiento', description: 'Hotel Centro Histórico (noche)', merchant: 'Hotel Zócalo Central', destination: 'Ciudad de México', createdAt: '2026-03-02T14:00:00Z' },
+  { id: 'e3', date: '2026-03-02', amount: 18.50, category: 'comida', description: 'Tacos y mezcal en mercado', merchant: 'Mercado de San Juan', destination: 'Ciudad de México', createdAt: '2026-03-02T20:00:00Z' },
+  { id: 'e4', date: '2026-03-03', amount: 12.00, category: 'transporte', description: 'Metro + Uber aeropuerto', merchant: 'Uber México', destination: 'Ciudad de México', createdAt: '2026-03-03T09:00:00Z' },
+  { id: 'e5', date: '2026-03-03', amount: 35.00, category: 'actividades', description: 'Entrada Museo Nacional Antropología', merchant: 'INAH', destination: 'Ciudad de México', createdAt: '2026-03-03T11:00:00Z' },
+  { id: 'e6', date: '2026-03-04', amount: 60.00, category: 'compras', description: 'Artesanías y souvenirs', merchant: 'Mercado de Artesanías', destination: 'Ciudad de México', createdAt: '2026-03-04T16:00:00Z' },
+  { id: 'e7', date: '2026-03-05', amount: 95.00, category: 'alojamiento', description: 'Posada en Oaxaca (2 noches)', merchant: 'Casa Oaxaca', destination: 'Oaxaca', createdAt: '2026-03-05T15:00:00Z' },
+  { id: 'e8', date: '2026-03-05', amount: 22.00, category: 'comida', description: 'Mole negro y tlayudas', merchant: 'El Asador Vasco', destination: 'Oaxaca', createdAt: '2026-03-05T21:00:00Z' },
+  { id: 'e9', date: '2026-03-06', amount: 45.00, category: 'actividades', description: 'Tour Monte Albán con guía', merchant: 'Oaxaca Tours', destination: 'Oaxaca', createdAt: '2026-03-06T10:00:00Z' },
+  { id: 'e10', date: '2026-03-07', amount: 28.00, category: 'transporte', description: 'Autobús Oaxaca → Puerto Escondido', merchant: 'ADO', destination: 'Puerto Escondido', createdAt: '2026-03-07T07:00:00Z' },
+  // Febrero 2026 — Viaje a Tokio
+  { id: 'e11', date: '2026-02-01', amount: 980.00, category: 'vuelos', description: 'Vuelo MAD→NRT (ida y vuelta)', merchant: 'Japan Airlines', destination: 'Tokio', createdAt: '2026-02-01T06:00:00Z' },
+  { id: 'e12', date: '2026-02-02', amount: 120.00, category: 'alojamiento', description: 'Hotel Shinjuku (2 noches)', merchant: 'Park Hyatt Tokyo', destination: 'Tokio', createdAt: '2026-02-02T15:00:00Z' },
+  { id: 'e13', date: '2026-02-03', amount: 35.00, category: 'comida', description: 'Ramen + sushi en Tsukiji', merchant: 'Tsukiji Market', destination: 'Tokio', createdAt: '2026-02-03T13:00:00Z' },
+  { id: 'e14', date: '2026-02-03', amount: 28.00, category: 'transporte', description: 'Pase de metro 3 días', merchant: 'Tokyo Metro', destination: 'Tokio', createdAt: '2026-02-03T08:00:00Z' },
+  { id: 'e15', date: '2026-02-04', amount: 55.00, category: 'actividades', description: 'Teamlab Borderless', merchant: 'TeamLab', destination: 'Tokio', createdAt: '2026-02-04T14:00:00Z' },
+  { id: 'e16', date: '2026-02-05', amount: 88.00, category: 'compras', description: 'Electrónica en Akihabara', merchant: 'Yodobashi Camera', destination: 'Tokio', createdAt: '2026-02-05T17:00:00Z' },
+  { id: 'e17', date: '2026-02-06', amount: 110.00, category: 'alojamiento', description: 'Ryokan tradicional en Kyoto', merchant: 'Ryokan Yoshida', destination: 'Kioto', createdAt: '2026-02-06T16:00:00Z' },
+  { id: 'e18', date: '2026-02-07', amount: 42.00, category: 'actividades', description: 'Entrada templos Fushimi Inari', merchant: 'Fushimi Inari', destination: 'Kioto', createdAt: '2026-02-07T09:00:00Z' },
+  // Enero 2026 — Viaje a París
+  { id: 'e19', date: '2026-01-10', amount: 310.00, category: 'vuelos', description: 'Vuelo MAD→CDG (ida y vuelta)', merchant: 'Vueling', destination: 'París', createdAt: '2026-01-10T07:00:00Z' },
+  { id: 'e20', date: '2026-01-11', amount: 145.00, category: 'alojamiento', description: 'Apartamento Marais (3 noches)', merchant: 'Airbnb Le Marais', destination: 'París', createdAt: '2026-01-11T14:00:00Z' },
+  { id: 'e21', date: '2026-01-12', amount: 65.00, category: 'actividades', description: 'Museo del Louvre + audioguía', merchant: 'Musée du Louvre', destination: 'París', createdAt: '2026-01-12T10:00:00Z' },
+  { id: 'e22', date: '2026-01-13', amount: 48.00, category: 'comida', description: 'Cena brasserie clásica', merchant: 'Brasserie Lipp', destination: 'París', createdAt: '2026-01-13T20:00:00Z' },
+  { id: 'e23', date: '2026-01-13', amount: 95.00, category: 'seguros', description: 'Seguro de viaje Europa', merchant: 'Mapfre Viaje', destination: 'París', createdAt: '2026-01-13T09:00:00Z' },
+  { id: 'e24', date: '2026-01-14', amount: 75.00, category: 'compras', description: 'Ropa y recuerdos en Galeries Lafayette', merchant: 'Galeries Lafayette', destination: 'París', createdAt: '2026-01-14T15:00:00Z' },
 ];
 
 const DEFAULT_BUDGETS: Budget[] = [
-  { category: 'alimentacion', limit: 400 },
-  { category: 'transporte', limit: 150 },
-  { category: 'salud', limit: 100 },
-  { category: 'entretenimiento', limit: 80 },
-  { category: 'servicios', limit: 250 },
-  { category: 'ropa', limit: 120 },
-  { category: 'educacion', limit: 200 },
+  { category: 'vuelos', limit: 1500 },
+  { category: 'alojamiento', limit: 800 },
+  { category: 'transporte', limit: 200 },
+  { category: 'comida', limit: 400 },
+  { category: 'actividades', limit: 300 },
+  { category: 'compras', limit: 250 },
+  { category: 'seguros', limit: 150 },
   { category: 'otros', limit: 100 },
 ];
 

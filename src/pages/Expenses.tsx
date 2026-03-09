@@ -25,7 +25,7 @@ export default function Expenses() {
       if (catFilter !== 'all' && e.category !== catFilter) return false;
       if (dateFrom && e.date < dateFrom) return false;
       if (dateTo && e.date > dateTo) return false;
-      if (q && !e.merchant.toLowerCase().includes(q) && !e.description.toLowerCase().includes(q)) return false;
+      if (q && !e.merchant.toLowerCase().includes(q) && !e.description.toLowerCase().includes(q) && !(e.destination ?? '').toLowerCase().includes(q)) return false;
       return true;
     });
   }, [expenses, search, catFilter, dateFrom, dateTo]);
@@ -59,7 +59,7 @@ export default function Expenses() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-slate-800">Mis Gastos</h1>
+          <h1 className="text-xl font-bold text-slate-800">Mis Gastos de Viaje</h1>
           <p className="text-sm text-slate-500 mt-0.5">{expenses.length} gastos registrados</p>
         </div>
         <button
@@ -78,7 +78,7 @@ export default function Expenses() {
             <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
-              placeholder="Buscar comercio o descripción..."
+              placeholder="Buscar comercio, descripción o destino..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-9 pr-3 py-2 text-sm border border-slate-200 rounded-xl focus:outline-none focus:border-indigo-300 focus:ring-1 focus:ring-indigo-100"
@@ -173,6 +173,7 @@ export default function Expenses() {
                 <tr className="border-b border-slate-100 bg-slate-50">
                   <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Fecha</th>
                   <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Comercio</th>
+                  <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden lg:table-cell">Destino</th>
                   <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide hidden md:table-cell">Descripción</th>
                   <th className="text-left px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Categoría</th>
                   <th className="text-right px-4 py-3 text-xs font-semibold text-slate-500 uppercase tracking-wide">Importe</th>
@@ -202,6 +203,15 @@ export default function Expenses() {
                           )}
                           <span className="font-medium text-slate-800 truncate max-w-[120px]">{e.merchant}</span>
                         </div>
+                      </td>
+                      <td className="px-4 py-3 text-slate-500 hidden lg:table-cell truncate max-w-[120px]">
+                        {e.destination ? (
+                          <span className="inline-flex items-center gap-1 text-xs text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full font-medium">
+                            {e.destination}
+                          </span>
+                        ) : (
+                          <span className="text-slate-300">—</span>
+                        )}
                       </td>
                       <td className="px-4 py-3 text-slate-500 hidden md:table-cell truncate max-w-[200px]">
                         {e.description}

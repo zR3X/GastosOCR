@@ -1,6 +1,6 @@
 import { useState, useMemo } from 'react';
 import {
-  ShoppingCart, Car, Heart, Tv, Zap, Shirt, BookOpen, Package,
+  Plane, BedDouble, Car, UtensilsCrossed, Ticket, ShoppingBag, ShieldCheck, Package,
   Pencil, Check, X,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
@@ -9,13 +9,13 @@ import { CATEGORIES, getCat } from '../constants/categories';
 import type { CategoryKey } from '../types';
 
 const ICONS: Record<CategoryKey, LucideIcon> = {
-  alimentacion: ShoppingCart,
+  vuelos: Plane,
+  alojamiento: BedDouble,
   transporte: Car,
-  salud: Heart,
-  entretenimiento: Tv,
-  servicios: Zap,
-  ropa: Shirt,
-  educacion: BookOpen,
+  comida: UtensilsCrossed,
+  actividades: Ticket,
+  compras: ShoppingBag,
+  seguros: ShieldCheck,
   otros: Package,
 };
 
@@ -57,7 +57,7 @@ function BudgetCard({
           </div>
           <div>
             <p className="font-semibold text-slate-800 text-sm">{cat.name}</p>
-            <p className="text-xs text-slate-400">Presupuesto mensual</p>
+            <p className="text-xs text-slate-400">Presupuesto de viaje</p>
           </div>
         </div>
         {!editing && (
@@ -166,7 +166,7 @@ export default function Budgets() {
       <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-5">
         <div className="flex items-center justify-between mb-3">
           <div>
-            <p className="text-xs text-slate-500 font-medium">Presupuesto total del mes</p>
+            <p className="text-xs text-slate-500 font-medium">Presupuesto total de viajes</p>
             <p className="text-2xl font-bold text-slate-800 mt-0.5">
               ${totalSpent.toFixed(2)}{' '}
               <span className="text-sm font-normal text-slate-400">/ ${totalBudget.toFixed(2)}</span>

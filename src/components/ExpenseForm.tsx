@@ -28,6 +28,7 @@ export default function ExpenseForm({
     category: initialData?.category ?? ('otros' as CategoryKey),
     description: initialData?.description ?? '',
     merchant: initialData?.merchant ?? '',
+    destination: initialData?.destination ?? '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [categorizing, setCategorizing] = useState(false);
@@ -57,6 +58,7 @@ export default function ExpenseForm({
       category: form.category as CategoryKey,
       description: form.description.trim(),
       merchant: form.merchant.trim(),
+      destination: form.destination.trim() || undefined,
       receiptImage: initialData?.receiptImage,
       ocrText: initialData?.ocrText,
     });
@@ -120,7 +122,7 @@ export default function ExpenseForm({
         <label className="block text-xs font-semibold text-slate-600 mb-1">Comercio / Establecimiento</label>
         <input
           type="text"
-          placeholder="Ej. Mercadona, Carrefour, Repsol..."
+          placeholder="Ej. Lufthansa, Airbnb, Uber, Restaurante..."
           value={form.merchant}
           onChange={(e) => set('merchant', e.target.value)}
           className={fieldCls('merchant')}
@@ -133,12 +135,24 @@ export default function ExpenseForm({
         <label className="block text-xs font-semibold text-slate-600 mb-1">Descripción</label>
         <input
           type="text"
-          placeholder="Ej. Compra semanal, Gasolina..."
+          placeholder="Ej. Vuelo MAD-NYC, Hotel 2 noches, Tour ciudad..."
           value={form.description}
           onChange={(e) => set('description', e.target.value)}
           className={fieldCls('description')}
         />
         {errors.description && <p className="text-xs text-red-500 mt-1">{errors.description}</p>}
+      </div>
+
+      {/* Destination */}
+      <div>
+        <label className="block text-xs font-semibold text-slate-600 mb-1">Destino / Ciudad</label>
+        <input
+          type="text"
+          placeholder="Ej. París, Tokio, Nueva York... (opcional)"
+          value={form.destination}
+          onChange={(e) => set('destination', e.target.value)}
+          className={fieldCls('destination')}
+        />
       </div>
 
       {/* Category + AI button */}
@@ -177,7 +191,7 @@ export default function ExpenseForm({
         </select>
         {catSuggested && (
           <p className="text-xs text-emerald-600 mt-1 flex items-center gap-1">
-            <Sparkles size={11} /> GPT-4o sugirió esta categoría
+            <Sparkles size={11} /> GPT-4o sugirió esta categoría de viaje
           </p>
         )}
       </div>

@@ -1,11 +1,11 @@
 export type CategoryKey =
-  | 'alimentacion'
+  | 'vuelos'
+  | 'alojamiento'
   | 'transporte'
-  | 'salud'
-  | 'entretenimiento'
-  | 'servicios'
-  | 'ropa'
-  | 'educacion'
+  | 'comida'
+  | 'actividades'
+  | 'compras'
+  | 'seguros'
   | 'otros';
 
 export interface Expense {
@@ -15,6 +15,7 @@ export interface Expense {
   category: CategoryKey;
   description: string;
   merchant: string;
+  destination?: string;  // ciudad / país del gasto
   receiptImage?: string; // base64 JPEG compressed
   ocrText?: string;
   createdAt: string;     // ISO timestamp

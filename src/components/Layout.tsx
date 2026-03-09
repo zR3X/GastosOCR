@@ -15,9 +15,9 @@ import Modal from './Modal';
 const NAV_ITEMS = [
   { to: '/', label: 'Panel Principal', icon: LayoutDashboard, end: true },
   { to: '/scan', label: 'Escanear Recibo', icon: ScanLine, end: false },
-  { to: '/expenses', label: 'Mis Gastos', icon: Receipt, end: false },
+  { to: '/expenses', label: 'Mis Gastos de Viaje', icon: Receipt, end: false },
   { to: '/budgets', label: 'Presupuesto', icon: Target, end: false },
-  { to: '/reports', label: 'Informes', icon: FileBarChart2, end: false },
+  { to: '/reports', label: 'Resumen de Viajes', icon: FileBarChart2, end: false },
 ];
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -74,8 +74,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Receipt size={20} className="text-white" />
         </div>
         <div>
-          <p className="font-bold text-white text-sm leading-none">GastosOCR</p>
-          <p className="text-indigo-300 text-xs mt-0.5">Powered by GPT-4o</p>
+          <p className="font-bold text-white text-sm leading-none">ViajeTrack</p>
+          <p className="text-indigo-300 text-xs mt-0.5">Gastos de viaje con OCR</p>
         </div>
       </div>
 
@@ -193,7 +193,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </button>
           <div className="flex items-center gap-2">
             <Receipt size={18} className="text-indigo-600" />
-            <span className="font-bold text-slate-800 text-sm">GastosOCR</span>
+            <span className="font-bold text-slate-800 text-sm">ViajeTrack</span>
           </div>
           {sideOpen && (
             <button onClick={() => setSideOpen(false)} className="ml-auto p-2 rounded-xl hover:bg-slate-100">
@@ -208,7 +208,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="max-w-6xl mx-auto flex items-center gap-3 flex-wrap">
               <AlertTriangle size={14} className="text-amber-600 flex-shrink-0" />
               <span className="text-xs text-amber-700 font-medium">
-                Configura tu OpenAI API Key para usar el OCR y la auto-categorización.
+                Configura tu OpenAI API Key para usar el OCR de recibos y la auto-categorización de viajes.
               </span>
               <button onClick={openKeyModal} className="text-xs font-semibold text-amber-700 underline hover:no-underline">
                 Configurar →
@@ -240,7 +240,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <main className="flex-1 p-4 lg:p-6 max-w-6xl w-full mx-auto">{children}</main>
 
         <footer className="text-center py-3 text-xs text-slate-400 border-t border-slate-200">
-          GastosOCR Demo &middot; <TrendingUp size={11} className="inline" /> GPT-4o · Cloudinary
+          ViajeTrack Demo &middot; <TrendingUp size={11} className="inline" /> GPT-4o · Cloudinary
         </footer>
       </div>
 

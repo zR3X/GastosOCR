@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { User } from '../types';
 
-const DEMO_USER: User = { email: 'demo@gastos.com', name: 'Usuario Demo' };
+const DEMO_USER: User = { email: 'demo@viaje.com', name: 'Viajero Demo' };
 const DEMO_PASSWORD = 'demo123';
-const AUTH_KEY = 'gastos_auth';
+const AUTH_KEY = 'viaje_auth';
 
 interface AuthContextType {
   user: User | null;

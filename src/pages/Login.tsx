@@ -4,7 +4,7 @@ import { Receipt, Eye, EyeOff, Lock, Mail } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
-  const [email, setEmail] = useState('demo@gastos.com');
+  const [email, setEmail] = useState('demo@viaje.com');
   const [password, setPassword] = useState('demo123');
   const [showPw, setShowPw] = useState(false);
   const [error, setError] = useState('');
@@ -39,8 +39,8 @@ export default function Login() {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <Receipt size={28} className="text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-900">GastosOCR</h1>
-          <p className="text-slate-500 text-sm mt-1">Rastreador de Gastos con OCR</p>
+          <h1 className="text-2xl font-bold text-slate-900">ViajeTrack</h1>
+          <p className="text-slate-500 text-sm mt-1">Rastreador de Gastos de Viaje con OCR</p>
         </div>
 
         {/* Demo credentials hint */}
@@ -48,7 +48,7 @@ export default function Login() {
           <p className="text-xs font-semibold text-indigo-700 mb-2">Credenciales de Demo</p>
           <div className="flex items-center gap-2 text-xs text-indigo-600 mb-1">
             <Mail size={12} />
-            <span>demo@gastos.com</span>
+            <span>demo@viaje.com</span>
           </div>
           <div className="flex items-center gap-2 text-xs text-indigo-600">
             <Lock size={12} />
@@ -68,7 +68,7 @@ export default function Login() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="demo@gastos.com"
+                placeholder="demo@viaje.com"
                 required
                 className="w-full pl-9 pr-3 py-2.5 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-100 transition-colors"
               />

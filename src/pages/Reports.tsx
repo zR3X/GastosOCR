@@ -64,8 +64,8 @@ export default function Reports() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-xl font-bold text-slate-800">Informes Fiscales</h1>
-        <p className="text-sm text-slate-500 mt-0.5">Exporta tus gastos para declaración de impuestos — Demo</p>
+        <h1 className="text-xl font-bold text-slate-800">Resumen de Viajes</h1>
+        <p className="text-sm text-slate-500 mt-0.5">Exporta tus gastos de viaje en PDF o CSV — Demo</p>
       </div>
 
       {/* Date range + export */}
@@ -273,7 +273,7 @@ export default function Reports() {
       )}
 
       <p className="text-xs text-center text-slate-400 pb-2">
-        Este informe es una demostración. Los datos se almacenan localmente en tu navegador.
+        Este resumen es una demostración. Los datos de viaje se almacenan localmente en tu navegador.
       </p>
     </div>
   );

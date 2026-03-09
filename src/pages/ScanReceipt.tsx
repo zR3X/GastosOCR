@@ -178,6 +178,7 @@ export default function ScanReceipt() {
                 merchant: analysis.merchant || undefined,
                 description: analysis.description || undefined,
                 category: analysis.category,
+                destination: analysis.destination || undefined,
               }}
               onSubmit={handleSave}
               onCancel={() => setState({ step: 'idle' })}
@@ -193,9 +194,9 @@ export default function ScanReceipt() {
   return (
     <div className="max-w-2xl mx-auto space-y-4">
       <div>
-        <h1 className="text-xl font-bold text-slate-800">Escanear Recibo</h1>
+        <h1 className="text-xl font-bold text-slate-800">Escanear Recibo de Viaje</h1>
         <p className="text-sm text-slate-500 mt-0.5">
-          GPT-4o Vision analiza tu ticket y extrae importe, fecha, comercio y categoría automáticamente.
+          GPT-4o Vision analiza tu ticket y extrae importe, fecha, comercio, destino y categoría automáticamente.
         </p>
       </div>
 
@@ -280,7 +281,7 @@ export default function ScanReceipt() {
       <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-slate-500 space-y-1">
         <p className="font-semibold text-slate-600 mb-2">Flujo de procesamiento:</p>
         <p>1. La imagen se sube a <strong>Cloudinary</strong> {!hasConfig && '(o se guarda localmente si no está configurado)'}</p>
-        <p>2. <strong>GPT-4o</strong> analiza el recibo y extrae: importe, fecha, comercio y categoría</p>
+        <p>2. <strong>GPT-4o</strong> analiza el recibo y extrae: importe, fecha, comercio, destino y categoría de viaje</p>
         <p>3. Revisas los datos antes de guardar el gasto</p>
       </div>
     </div>

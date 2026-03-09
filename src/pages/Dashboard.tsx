@@ -131,7 +131,7 @@ export default function Dashboard() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-bold text-slate-800">Panel Principal</h1>
+          <h1 className="text-xl font-bold text-slate-800">Mis Viajes</h1>
           <p className="text-sm text-slate-500 mt-0.5 capitalize">{monthName}</p>
         </div>
         <Link
@@ -146,7 +146,7 @@ export default function Dashboard() {
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          label="Total del mes"
+          label="Gasto este mes"
           value={fmt(totalMonth)}
           sub={`${monthExpenses.length} gastos`}
           icon={Receipt}
@@ -162,7 +162,7 @@ export default function Dashboard() {
         <StatCard
           label="Total registrado"
           value={`${expenses.length}`}
-          sub="gastos en total"
+          sub="gastos de viaje"
           icon={TrendingUp}
           color="bg-violet-500"
         />
@@ -220,7 +220,7 @@ export default function Dashboard() {
       <div className="grid lg:grid-cols-2 gap-4">
         {/* Pie chart */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
-          <h2 className="font-semibold text-slate-800 text-sm mb-4">Gastos por categoría (mes actual)</h2>
+          <h2 className="font-semibold text-slate-800 text-sm mb-4">Gastos de viaje por categoría (mes actual)</h2>
           {pieData.length > 0 ? (
             <div className="h-64">
               <ResponsiveContainer width="100%" height="100%">
@@ -255,7 +255,7 @@ export default function Dashboard() {
 
         {/* Bar chart */}
         <div className="bg-white rounded-2xl p-5 shadow-sm border border-slate-100">
-          <h2 className="font-semibold text-slate-800 text-sm mb-4">Evolución mensual (últimos 6 meses)</h2>
+          <h2 className="font-semibold text-slate-800 text-sm mb-4">Gasto en viajes por mes (últimos 6 meses)</h2>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={barData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
@@ -273,7 +273,7 @@ export default function Dashboard() {
       {/* Recent Expenses */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-100">
         <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100">
-          <h2 className="font-semibold text-slate-800 text-sm">Últimos gastos</h2>
+          <h2 className="font-semibold text-slate-800 text-sm">Últimos gastos de viaje</h2>
           <Link
             to="/expenses"
             className="text-xs text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-1"
@@ -286,7 +286,7 @@ export default function Dashboard() {
             <div className="px-5 py-8 text-center text-slate-400 text-sm">
               No hay gastos registrados.{' '}
               <Link to="/scan" className="text-indigo-500 hover:underline">
-                Escanea tu primer recibo
+                Escanea tu primer recibo de viaje
               </Link>
             </div>
           )}
