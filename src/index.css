@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  @apply bg-slate-50 text-slate-800;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { @apply bg-slate-100; }
+::-webkit-scrollbar-thumb { @apply bg-slate-300 rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-slate-400; }
+
+/* Custom progress bar animation */
+@keyframes progress-fill {
+  from { width: 0%; }
+}
+.progress-bar { animation: progress-fill 0.8s ease-out; }
+
+/* Fade in */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fade-in 0.3s ease-out; }
